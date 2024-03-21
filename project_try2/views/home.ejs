@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #ff7e5f, #feb47b); /* Gradient background */
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #fff; 
+        }
+        
+        h1 {
+            color: #fff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .data-display {
+            background-color: rgba(255, 255, 255, 0.9); 
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-top: 20px;
+            color: #333; /* Dark gray text */
+        }
+        
+        .data-display p {
+            margin-bottom: 10px;
+        }
+        
+        .data-display p strong {
+            font-weight: bold;
+            color: #555; /* Dark gray text */
+        }
+        
+        .data-display p:last-child {
+            margin-bottom: 0; /* Remove bottom margin for the last paragraph */
+        }
+        
+        .btn-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .btn {
+            background-color: #938ee1; /* White button background */
+            color: #2b2928; /* Button text color */
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: rgb(202, 16, 16); 
+            color: rgb(255, 255, 255); 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Your Home Page</h1>
+        <div class="data-display">
+            <p><strong>Name:</strong> <%= name %></p>
+            <p><strong>Age:</strong> <%= age %></p>
+            <p><strong>Date of Birth:</strong> <%= dob %></p>
+            <p><strong>Phone Number:</strong> <%= phone %></p>
+            <p><strong>Email:</strong> <%= email %></p>
+            <p><strong>Gender:</strong> <%= gender %></p>
+        </div>
+        <div class="btn-container">
+            <button class="btn" onclick="redirectToSettings()">Back</button>
+        </div>
+    </div>
+
+    <script>
+        function redirectToSettings() {
+            window.location.href = "/";
+        }
+    </script>
+</body>
+</html>

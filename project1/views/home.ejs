@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
+            padding: 20px;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ff6b6b;
+        }
+
+        .user-info {
+            margin-top: 20px;
+        }
+
+        .user-info p {
+            margin: 5px 0;
+        }
+
+        .decoration {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+        }
+
+        .decoration::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle, #4facfe, #00f2fe);
+            opacity: 0.8;
+            z-index: -1;
+        }
+
+        .decoration::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(#ff6b6b, transparent);
+            border-radius: 50%;
+            z-index: -1;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: translate(-50%, -50%) scale(0.5);
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1);
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(0.5);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="decoration"></div>
+    <div class="container">
+        <h1>Welcome <%= userData.first_name %></h1>
+        <div class="user-info">
+            <p><strong>First Name:</strong> <%= userData.first_name %></p>
+            <p><strong>Middle Name:</strong> <%= userData.middle_name %></p>
+            <p><strong>Last Name:</strong> <%= userData.last_name %></p>
+            <p><strong>Date of Birth:</strong> <%= userData.dob %></p>
+            <p><strong>Gender:</strong> <%= userData.gender %></p>
+            <p><strong>Mobile:</strong> <%= userData.ph_no %></p>
+            <p><strong>Email:</strong> <%= userData.email %></p>
+        </div>
+    </div>
+</body>
+</html>

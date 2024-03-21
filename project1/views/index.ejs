@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <style>
+        html{
+            font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+        body{
+            background-color:rgb(82, 136, 218);
+        }
+        .items
+        {
+            padding : 10px;
+            text-transform: capitalize;
+        }
+        .items label input{
+            align-items: end;
+        }
+        .forms_content
+        {
+            background-color: red;
+            display: inline-block;
+            border-radius: 40px;
+            border-style :groove;
+        }
+
+        #item8 
+        {
+            display: flex;
+            justify-content: end;
+            gap: 10px;
+        }
+
+        .container
+        {
+            padding: 100px;
+            display: flex;
+            justify-content: center;
+        }
+
+        input{
+            border-radius: 40px;
+        }
+        input:focus
+        {
+            background-color: rgb(193, 218, 218);
+        }
+        span
+        {
+            font-weight: bold;
+        }
+
+        #item8 input{
+            padding: 5px;
+            color: blanchedalmond;
+            background-color: black;
+        }
+
+        #item8 input:active
+        {
+            background-color: violet;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form action="/validate" id="regForm" method="post">
+            <div class="forms_content">
+                <h2 style="display: flex;justify-content:center">Login form</h2>
+                <div class="items" id="item1">
+                    <label for="first_name"><span>first name</span> <input type="text" style="margin-left: 20px;" id ="first_name" required>
+                    </label>
+                    <br>
+                </div>
+                <div class="items" id="item2">
+                    <label for="middle_name"><span>middle name</span> <input style="margin-left: 3px;" type="text" id = "middle_name">
+                    </label>
+                    <br>
+                </div>
+                <div class="items" id="item3">
+                    <label  for="last_name"><span style="font-weight: bold;">last name</span>  <input style="margin-left: 20px;" type="text" id = "last_name">
+                    </label>
+                    <br>
+                </div>
+                <div class="items" id="item4">
+                    <label for="dob"><span>DOB</span><input style="margin-left: 63px;width:180px" type="date" id = 'dob' required></label>
+                    <br>
+                </div>
+                <div class="items" id = 'item9'> 
+                    <label for="gender"><span>gender</span>
+                    </label>
+                   <label for="" style="padding-left: 40px;"> <input name="gen"  value= 'male' type="radio">male
+                    <input name="gen" value="female" type="radio">female</label>
+                </div>
+                <div class="items" id="item5">
+                    <label for="phone_number"><span>Mobile</span><input 
+                         type="tel" id="ph_no"
+                         placeholder="+91 0123456789"  pattern='[0-9]{10}' style="margin-left : 47px" value required></label>
+                    <br>
+                </div>
+                <div class="items" id="item6">
+                    <label for="email"><span>email</span><input
+                          type="tel" style="margin-left: 55px;" id="email" placeholder="abc@gmail.com" required></label>
+                    <br>
+                </div> 
+                <div class="items" id="item7">
+                    <label for="password"><span>Password</span><input
+                          type="password" style="margin-left: 30px;" id="password" placeholder="****" required></label>
+                          <label for="pass"><input
+                            type="checkbox" id="pass"></label>
+                </div> 
+                <div class="items" id="item8" >
+                    <input style="border-radius: 10px;" type="reset" id = 'reset'> <input style="border-radius: 10px;" type="submit" id = 'submit'> 
+                    <br>
+                </div>              
+            </div>
+        </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(()=>
+        {
+            $('#regForm').submit((event)=>
+            {
+                event.preventDefault();
+                var formData = {
+                    first_name: $("#first_name").val(),
+                    middle_name: $("#middle_name").val(),
+                    last_name: $("#last_name").val(),
+                    dob: $("#dob").val(),
+                    gender: $('input[name="gender"]:checked').val(),
+                    ph_no: $("#ph_no").val(),
+                    email: $("#email").val(),
+                    password: $("#password").val(),
+                  };
+                  $.ajax({
+                    type : "POST",
+                    url : "/validate",
+                    data : formData,
+                    success : (response)=>
+                    {
+                        if(response.success)
+                        console.log("Got response")
+                        else
+                        {
+                            console.log("hi error")
+                            alert(response.message)
+                        }
+                    },
+                    error : (error)=>
+                    {
+                        console.error(error)
+                    }
+                  })
+            })
+        })
+
+        document.getElementById("first_name").addEventListener("blur", () => {
+            const firstNameInput = document.getElementById("first_name");
+            firstNameInput.value = firstNameInput.value.toUpperCase();
+        });
+
+        document.getElementById("middle_name").addEventListener("blur", () => {
+            const middle_name = document.getElementById("middle name");
+            middle_name.value = middle_name.value.toUpperCase();
+        });
+
+        document.getElementById("last_name").addEventListener("blur", () => {
+            const last_name = document.getElementById("last_name");
+            last_name.value = last_name.value.toUpperCase();
+        });
+        
+        document.getElementById("pass").addEventListener("click",()=>{
+                var pass = document.getElementById('password')
+                if(pass.type==='password')
+                pass.type = 'text';
+                else
+                pass.type = 'password';
+        })
+
+        document.getElementById('submit').addEventListener("mouseover", function() {
+            document.getElementById('submit').style.backgroundColor = 'brown';
+        });
+        
+        document.getElementById('submit').addEventListener("mouseout", function() {
+            document.getElementById('submit').style.backgroundColor = 'black';
+        });
+        
+        document.getElementById('reset').addEventListener("mouseover", function() {
+            document.getElementById('reset').style.backgroundColor = 'brown';
+        });
+        
+        document.getElementById('reset').addEventListener("mouseout", function() {
+            document.getElementById('reset').style.backgroundColor = 'black';
+        });
+    </script>
+</body>
+</html>
+ 

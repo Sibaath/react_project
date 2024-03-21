@@ -1,0 +1,11 @@
+ curl -X GET \
+  -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiU2liYWF0aCIsImlhdCI6MTcxMDY0NzA3OX0.IRSKI-egiK29ff8dTiab5_pHyc6JLH-CyR4bLF8k6NM" \
+  http://localhost:3000/employees
+
+{"message":" Access successfull to Employee Endpoint"}%  
+this is the curl command to authorize the token
+
+Authenication : verify the user by matching with the database .
+Authorization : find the resources to which the user has access to .
+
+using JWT
